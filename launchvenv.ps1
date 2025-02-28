@@ -2,4 +2,4 @@
 cd ".."
 
 # Activate the virtual environment
-.\\virtual_envs\D499_Project_Supervised_venv\Scripts\Activate.ps1
+.\\virtual_envs\D499_Project_1_Supervised_venv\Scripts\Activate.ps1
