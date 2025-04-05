@@ -29,9 +29,9 @@ if (-Not (Test-Path -Path "\virtual_envs\D499_Project_1_Supervised_venv\")) {
 #.\\Test\D498_Project_1_Supervised_Test_venv\Scripts\Activate.ps1
 
 # Install Python Requirements
-#python -m pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
-python -m pip install jupyterlab
+#python -m pip install jupyterlab
 
 
 # Change Directories.
@@ -58,23 +58,33 @@ if ((Get-Process -Name code) -ne $null) {
 
 
 # Get Computer's IP Address and save to a variable 
-$IpAddress = (Get-NetIPAddress |
+$IpAddress = @(Get-NetIPAddress |
   Where-Object {
     $_.AddressState -eq 'Preferred' -and 
     $_.ValidLifetime -lt '24:00:00'
   }
 ).IPAddress
 
-# Creating an expression to be involved to launch the juptyerlab to a specific page with ip, port, and notebook directory parameters set. 
-#$expression = "python -m jupyterlab notebooks/order_of_operations_landing.ipynb --ip $($IpAddress[1]) --port 8888 --notebook-dir=."
-#$expression = "python -m jupyterlab notebooks/order_of_operations_landing.ipynb --notebook-dir=."
+# Print Out of IP Addresses on System
+$IpAddressLength = $IpAddress.Count 
+Write-Host "Total IPAddresses In Network Object: " $IpAddressLength
 
-$expression = "python -m jupyterlab --ip $($IpAddress[1]) --port 8888 --notebook-dir=."
+for ($i = 0; $i -lt $IpAddressLength; $i++) {
+    Write-Host $i = $IpAddress[$i]
+}
+
+
+#In the exrpression below. Update the ip section to select the correct IpAddress object in the array. 
+# "--ip $($IpAddress[-1])" :: "-1" is being used to select the last item in the array. Note: Arrays begin at 0. 
+
+# Creating an expression to be involved to launch the juptyerlab to a specific page with ip, port, and notebook directory parameters set. 
+#$expression = "python -m jupyterlab --ip $($IpAddress[-1]) --port 8888 --notebook-dir=."
 #$expression = "python -m jupyterlab --notebook-dir=."
+$expression = "python -m jupyterlab finding_donors_final.ipynb --ip $($IpAddress[-1]) --port 8888 --notebook-dir=."
+
 
 # Invoking expression above. 
 Invoke-Expression $expression
 
-#python -m jupyterlab notebooks/order_of_operations_landing.ipynb --ip $($IpAddress[1]) --port 8888 --notebook-dir=.
 
 #python -m jupyterlab --notebook-dir=.

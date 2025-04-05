@@ -14,7 +14,7 @@ import matplotlib.patches as mpatches
 import numpy as np
 import pandas as pd
 from time import time
-from sklearn.metrics import f1_score, accuracy_score
+from sklearn.metrics import f1_score, accuracy_score, recall_score
 
 
 colors = [pl.cm.Paired(i) for i in range(12)]
@@ -65,7 +65,7 @@ def evaluate(results, accuracy, f1):
     fig, ax = pl.subplots(2, 3, figsize = (11,8))
 
     # Constants
-    bar_width = 0.3
+    bar_width = 0.1
 
     # Super loop to plot four panels of data
     for k, learner in enumerate(results.keys()):
@@ -106,13 +106,95 @@ def evaluate(results, accuracy, f1):
     ax[0, 2].set_ylim((0, 1))
     ax[1, 1].set_ylim((0, 1))
     ax[1, 2].set_ylim((0, 1))
-
+    
     # Create patches for the legend
     patches = []
     for i, learner in enumerate(results.keys()):
         patches.append(mpatches.Patch(color = colors[i], label = learner))
     pl.legend(handles = patches, bbox_to_anchor = (-.80, 2.53), \
                loc = 'upper center', borderaxespad = 0., ncol = 3, fontsize = 'x-large')
+    
+    # Aesthetics
+    pl.suptitle("Performance Metrics for Three Supervised Learning Models", fontsize = 16, x = 0.63, y = 1.05)
+    # Tune the subplot layout
+    # Refer - https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.subplots_adjust.html for more details on the arguments
+    pl.subplots_adjust(left = 0.125, right = 1.2, bottom = 0.1, top = 0.9, wspace = 0.2, hspace = 0.3)    
+    pl.tight_layout()
+    pl.show()
+    
+
+
+def evaluate_with_recall(results, accuracy, recall, f1):
+    """
+    Visualization code to display results of various learners.
+    
+    inputs:
+      - learners: a list of supervised learners
+      - stats: a list of dictionaries of the statistic results from 'train_predict()'
+      - accuracy: The score for the naive predictor
+      - f1: The score for the naive predictor
+    """
+  
+    # Create figure
+    fig, ax = pl.subplots(2, 4, figsize = (11,8))
+
+    # Constants
+    bar_width = 0.1
+
+    # Super loop to plot four panels of data
+    for k, learner in enumerate(results.keys()):
+        for j, metric in enumerate(['train_time', 'acc_train', 'recall_train', 'f_train', 'pred_time', 'acc_test', 'recall_test', 'f_test']):
+            for i in np.arange(3):
+                
+                # Creative plot code
+                ax[j//4, j%4].bar(i+k*bar_width, results[learner][i][metric], width = bar_width, color = colors[k])
+                ax[j//4, j%4].set_xticks([0.45, 1.45, 2.45])
+                ax[j//4, j%4].set_xticklabels(["1%", "10%", "100%"])
+                ax[j//4, j%4].set_xlabel("Training Set Size")
+                ax[j//4, j%4].set_xlim((-0.1, 3.0))
+    
+    # Add unique y-labels
+    ax[0, 0].set_ylabel("Time (in seconds)")
+    ax[0, 1].set_ylabel("Accuracy Score")
+    ax[0, 2].set_ylabel("Recall Score")
+    ax[0, 3].set_ylabel("F-score")
+    ax[1, 0].set_ylabel("Time (in seconds)")
+    ax[1, 1].set_ylabel("Accuracy Score")
+    ax[1, 2].set_ylabel("Recall score")
+    ax[1, 3].set_ylabel("F-score")
+    
+    # Add titles
+    ax[0, 0].set_title("Model Training")
+    ax[0, 1].set_title("Accuracy Score on Training Subset")
+    ax[0, 2].set_title("Recall Score on Training Subset")
+    ax[0, 3].set_title("F-score on Training Subset")
+    ax[1, 0].set_title("Model Predicting")
+    ax[1, 1].set_title("Accuracy Score on Testing Set")
+    ax[1, 2].set_title("Recall Score on Testing Set")
+    ax[1, 3].set_title("F-score on Testing Set")
+    
+    # Add horizontal lines for naive predictors
+    ax[0, 1].axhline(y = accuracy, xmin = -0.1, xmax = 3.0, linewidth = 1, color = 'k', linestyle = 'dashed')
+    ax[1, 1].axhline(y = accuracy, xmin = -0.1, xmax = 3.0, linewidth = 1, color = 'k', linestyle = 'dashed')
+    ax[0, 2].axhline(y = recall, xmin = -0.1, xmax = 3.0, linewidth = 1, color = 'k', linestyle = 'dashed')
+    ax[1, 2].axhline(y = recall, xmin = -0.1, xmax = 3.0, linewidth = 1, color = 'k', linestyle = 'dashed')
+    ax[0, 3].axhline(y = f1, xmin = -0.1, xmax = 3.0, linewidth = 1, color = 'k', linestyle = 'dashed')
+    ax[1, 3].axhline(y = f1, xmin = -0.1, xmax = 3.0, linewidth = 1, color = 'k', linestyle = 'dashed')
+    
+    # Set y-limits for score panels
+    ax[0, 1].set_ylim((0, 1))
+    ax[0, 2].set_ylim((0, 1))
+    ax[0, 3].set_ylim((0, 1))
+    ax[1, 1].set_ylim((0, 1))
+    ax[1, 2].set_ylim((0, 1))
+    ax[1, 3].set_ylim((0, 1))
+    
+    # Create patches for the legend
+    patches = []
+    for i, learner in enumerate(results.keys()):
+        patches.append(mpatches.Patch(color = colors[i], label = learner))
+    pl.legend(handles = patches, bbox_to_anchor = (-.80, 2.53), \
+               loc = 'upper center', borderaxespad = 0., ncol = 4, fontsize = 'x-large')
     
     # Aesthetics
     pl.suptitle("Performance Metrics for Three Supervised Learning Models", fontsize = 16, x = 0.63, y = 1.05)
@@ -138,6 +220,29 @@ def feature_plot(importances, X_train, y_train):
     pl.bar(np.arange(5) + 0.1, np.cumsum(values), width = 0.2, align = "center", color=colors[1], \
           label = "Cumulative Feature Weight")
     pl.xticks(np.arange(5), columns, rotation=20)
+    pl.xlim((-0.5, 4.5))
+    pl.ylabel("Weight", fontsize = 12)
+    pl.xlabel("Feature", fontsize = 12)
+    
+    pl.legend()
+    pl.tight_layout()
+    pl.show()  
+
+def feature_plot_expanded_25(importances, X_train, y_train):
+    
+    # Display the five most important features
+    indices = np.argsort(importances)[::-1]
+    columns = X_train.columns.values[indices[:25]]
+    values = importances[indices][:25]
+
+    # Creat the plot
+    fig = pl.figure(figsize = (9, 25))
+    pl.title("Normalized Weights for First Five Most Predictive Features", fontsize = 16)
+    pl.bar(np.arange(25) - 0.1, values, width = 0.2, align="center", color=colors[0], \
+          label = "Feature Weight")
+    pl.bar(np.arange(25) + 0.1, np.cumsum(values), width = 0.2, align = "center", color=colors[1], \
+          label = "Cumulative Feature Weight")
+    pl.xticks(np.arange(25), columns, rotation=20)
     pl.xlim((-0.5, 4.5))
     pl.ylabel("Weight", fontsize = 12)
     pl.xlabel("Feature", fontsize = 12)
