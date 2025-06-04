@@ -1,0 +1,403 @@
+Let me give an example...
+
+
+1
+
+parameters = {
+    'learning_rate': [0.01, 0.05, 0.1, 0.2], 
+    'max_iter': [300, 500, 700],
+    'max_depth': [5, 7, 9, 10],
+    'max_leaf_nodes': [31, 63, 127],
+    'l2_regularization': [0.5, 0.1, 0.2],
+    'min_samples_leaf': [20, 30, 40],
+    'max_bins': [128]
+
+
+Fitting 5 folds for each of 1296 candidates, totalling 6480 fits
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8700
+Final recall score on the testing data: 0.6463
+Final F-score on the testing data: 0.7509
+
+HistGradientBoostingClassifier(l2_regularization=0.2, learning_rate=0.05,
+                               max_bins=128, max_depth=5, max_iter=300,
+                               random_state=5654)
+
+best_params = {'l2_regularization': 0.2,
+ 'learning_rate': 0.05,
+ 'max_bins': 128,
+ 'max_depth': 5,
+ 'max_iter': 300,
+ 'max_leaf_nodes': 31,
+ 'min_samples_leaf': 20}
+
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+2
+
+
+{'l2_regularization': 0.05,
+ 'learning_rate': 0.01,
+ 'max_bins': 128,
+ 'max_depth': 5,
+ 'max_iter': 2000,
+ 'max_leaf_nodes': 63,
+ 'min_samples_leaf': 50}
+
+
+Fitting 5 folds for each of 36 candidates, totalling 180 fits
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8704
+Final recall score on the testing data: 0.6485
+Final F-score on the testing data: 0.7516
+
+
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+3
+
+{'l2_regularization': 0.05,
+ 'learning_rate': 0.005,
+ 'max_bins': 128,
+ 'max_depth': 5,
+ 'max_iter': 3000,
+ 'max_leaf_nodes': 127,
+ 'min_samples_leaf': 100}
+
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8695
+Final recall score on the testing data: 0.6463
+Final F-score on the testing data: 0.7496
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+4
+
+{'l2_regularization': 0.05,
+ 'learning_rate': 0.01,
+ 'max_bins': 255,
+ 'max_depth': 5,
+ 'max_iter': 2000,
+ 'max_leaf_nodes': 63,
+ 'min_samples_leaf': 50}
+
+Fitting 5 folds for each of 9 candidates, totalling 45 fits
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8704
+Final recall score on the testing data: 0.6485
+Final F-score on the testing data: 0.7516
+
+
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+5
+
+{'l2_regularization': 0.01,
+ 'learning_rate': 0.05,
+ 'max_bins': 255,
+ 'max_depth': 5,
+ 'max_iter': 1500,
+ 'max_leaf_nodes': 31,
+ 'min_samples_leaf': 10}
+
+Fitting 5 folds for each of 486 candidates, totalling 2430 fits
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8699
+Final recall score on the testing data: 0.6481
+Final F-score on the testing data: 0.7501
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+6
+
+You said:
+{'l2_regularization': 0.01,
+ 'learning_rate': 0.2,
+ 'max_bins': 255,
+ 'max_depth': 5,
+ 'max_iter': 2000,
+ 'max_leaf_nodes': 63,
+ 'min_samples_leaf': 20}
+
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8688
+Final recall score on the testing data: 0.6517
+Final F-score on the testing data: 0.7462
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+7
+
+{'l2_regularization': 0.01,
+ 'learning_rate': 0.05,
+ 'max_bins': 255,
+ 'max_depth': 5,
+ 'max_iter': 2000,
+ 'max_leaf_nodes': 63,
+ 'min_samples_leaf': 20}
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8706
+Final recall score on the testing data: 0.6499
+Final F-score on the testing data: 0.7519
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+8
+
+{'l2_regularization': 0.07,
+ 'learning_rate': 0.05,
+ 'max_bins': 255,
+ 'max_depth': 5,
+ 'max_iter': 2000,
+ 'max_leaf_nodes': 63,
+ 'min_samples_leaf': 10}
+
+Fitting 5 folds for each of 54 candidates, totalling 270 fits
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8711
+Final recall score on the testing data: 0.6517
+Final F-score on the testing data: 0.7528
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+9
+
+{'l2_regularization': 0.01,
+ 'learning_rate': 0.05,
+ 'max_bins': 255,
+ 'max_depth': 5,
+ 'max_iter': 2000,
+ 'max_leaf_nodes': 31,
+ 'min_samples_leaf': 10}
+
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8699
+Final recall score on the testing data: 0.6481
+Final F-score on the testing data: 0.7501
+
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+10
+
+What I used in the grid search: 
+
+# HINT: parameters = {'parameter_1': [value1, value2], 'parameter_2': [value1, value2]}
+parameters = {
+    'learning_rate': [0.05], 
+    'max_iter': [2000],
+    'max_depth': [5, 6],
+    'max_leaf_nodes': [47, 63, 95, 127],
+    'l2_regularization': [0.01, 0.05, 0.1, 0.15, 0.2],
+    'min_samples_leaf': [20, 30, 40, 50],
+    'max_bins': [255]
+    
+}
+
+Results
+
+Fitting 5 folds for each of 160 candidates, totalling 800 fits
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8706
+Final recall score on the testing data: 0.6508
+Final F-score on the testing data: 0.7517
+
+Best Parameters found:
+{'l2_regularization': 0.2,
+ 'learning_rate': 0.05,
+ 'max_bins': 255,
+ 'max_depth': 5,
+ 'max_iter': 2000,
+ 'max_leaf_nodes': 47,
+ 'min_samples_leaf': 20}
+
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+11
+
+What was used in grid search:
+parameters = {
+    'learning_rate': [0.03, 0.05, 0.07, 0.09, 0.1], 
+    'max_iter': [2000, 2250, 2500, 2750, 3000],
+    'max_depth': [5, 6],
+    'max_leaf_nodes': [15, 31, 39, 47, 63],
+    'l2_regularization': [0.15, 0.2, 0.25, 0.3],
+    'min_samples_leaf': [20, 25, 30, 35, 40],
+    'max_bins': [255]
+    
+
+Best Parameters:
+{'l2_regularization': 0.2,
+ 'learning_rate': 0.09,
+ 'max_bins': 255,
+ 'max_depth': 5,
+ 'max_iter': 2000,
+ 'max_leaf_nodes': 39,
+ 'min_samples_leaf': 20}
+
+
+Results:
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8710
+Final recall score on the testing data: 0.6522
+Final F-score on the testing data: 0.7523
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+12
+
+parameters = {
+    'learning_rate': [0.09, 0.0925, 0.095], 
+    'max_iter': [2000],
+    'max_depth': [5, 6],
+    'max_leaf_nodes': [25, 31],
+    'l2_regularization': [0.25, 0.275, 0.3, 0.325, 0.35],
+    'min_samples_leaf': [25, 27, 30, 33, 35],
+    'max_bins': [255]
+    
+}
+
+
+{'l2_regularization': 0.325,
+ 'learning_rate': 0.0925,
+ 'max_bins': 255,
+ 'max_depth': 5,
+ 'max_iter': 2000,
+ 'max_leaf_nodes': 31,
+ 'min_samples_leaf': 35}
+
+Results:
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8698
+Final recall score on the testing data: 0.6522
+Final F-score on the testing data: 0.7489
+
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+13
+
+GridSearch Used:
+parameters = {
+    'learning_rate': [0.08875, 0.09, 0.09125], 
+    'max_iter': [1850, 2000, 2150],
+    'max_depth': [5, 6],
+    'max_leaf_nodes': [31, 39, 47],
+    'l2_regularization': [0.175, 0.2, 0.225],
+    'min_samples_leaf': [18, 20, 22],
+    'max_bins': [255]
+}
+
+Best Parameters:
+{'l2_regularization': 0.2,
+ 'learning_rate': 0.09,
+ 'max_bins': 255,
+ 'max_depth': 5,
+ 'max_iter': 1850,
+ 'max_leaf_nodes': 39,
+ 'min_samples_leaf': 20}
+
+
+Results:
+Fitting 5 folds for each of 486 candidates, totalling 2430 fits
+Unoptimized model
+------
+Accuracy score on testing data: 0.8703
+Recall score on testing data: 0.6571
+F-score on testing data: 0.7493
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8710
+Final recall score on the testing data: 0.6522
+Final F-score on the testing data: 0.7523
+
+
+==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+
+
+
+
+parameters = {
+    'learning_rate': [0.01, 0.05, 0.1, 0.2], 
+    'max_iter': [300, 500, 700],
+    'max_depth': [5, 7, 9, 10],
+    'max_leaf_nodes': [31, 63, 127],
+    'l2_regularization': [0.5, 0.1, 0.2],
+    'min_samples_leaf': [20, 30, 40],
+    'max_bins': [128]
